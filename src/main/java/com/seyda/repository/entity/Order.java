@@ -28,7 +28,7 @@ public class Order extends BaseEntity {
     private LocalDate orderDate;
     @ManyToOne
     private Customer customer;
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetails> orderDetails;
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    private List<OrderDetails> orderDetails=new ArrayList<>();
 
 }

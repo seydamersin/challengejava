@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -17,10 +19,12 @@ import java.util.List;
 @Entity
 public class Cart extends BaseEntity {
 
-
+    private double totalPrice;
     @OneToOne
     private Customer customer;
-    @OneToMany(mappedBy = "cart")
-    private List<Order> orderlist;
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
+    private List<Order> orderlist=new ArrayList<>();
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    private List<OrderDetails> orderDetails;
 
 }
